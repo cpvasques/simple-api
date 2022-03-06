@@ -73,7 +73,7 @@ The Swagger documentation is generated automatically as long as the code uses th
 
 To access the Swagger docs simply go to the **/docs** route.
 
-Example: http://localhost:3000/swagger-ui/
+Example: http://localhost:3000/docs/
 
 ## Test
 
