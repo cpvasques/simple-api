@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
@@ -44,36 +44,6 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
-
-## Migrations
-
-To generate a new migration
-
-```bash
-$ npm run typeorm:migration:generate <migration-name>
-```
-
-> To run migrations, make sure the database is running
-
-To run the migrations, run the following:
-
-```bash
-$ npm run typeorm:migration:run
-```
-
-To revert the migrations, run the following:
-
-```bash
-$ npm run typeorm:migration:revert
-```
-
-## Swagger
-
-The Swagger documentation is generated automatically as long as the code uses the correct OpenAPI decorators.
-
-To access the Swagger docs simply go to the **/docs** route.
-
-Example: http://localhost:3000/docs/
 
 ## Test
 

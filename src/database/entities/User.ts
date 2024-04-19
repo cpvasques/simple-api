@@ -1,31 +1,61 @@
 import { InternalServerErrorException } from '@nestjs/common';
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import {
+	BeforeInsert,
+	Column,
+	CreateDateColumn,
+	DeleteDateColumn,
+	Entity,
+	Index,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn,
+} from 'typeorm';
 
-@Entity('users')
+@Entity()
 export class User {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'varchar', nullable: false, unique: true })
-	username: string;
+	@Column({ type: 'varchar', nullable: true, length: 255 })
+	@Index({ unique: true, where: 'login IS NOT NULL' })
+	login: string;
 
-	@Column({ type: 'varchar', nullable: false })
+	@Column({ type: 'varchar', nullable: false, length: 255 })
 	name: string;
 
-	@Column({ type: 'varchar', nullable: false })
+	@Column({ type: 'varchar', nullable: true, length: 255 })
+	companyName: string;
+
+	@Column({ type: 'varchar', nullable: true, length: 255 })
+	@Index({ unique: true, where: 'email IS NOT NULL' })
 	email: string;
 
-	@Column({ type: 'varchar', nullable: false })
+	@Column({ type: 'varchar', nullable: true, length: 255 })
 	password: string;
 
-	@Column({
+	@Column({ type: 'varchar', nullable: true, length: 255 })
+	phoneNumber: string;
+
+	@Column({ type: 'boolean', default: true })
+	active: boolean;
+
+	@CreateDateColumn({
 		type: 'timestamp',
 		nullable: false,
-		name: 'created_at',
-		default: () => 'CURRENT_TIMESTAMP',
+		default: () => 'CURRENT_TIMESTAMP(6)',
 	})
 	createdAt: Date;
+
+	@UpdateDateColumn({
+		type: 'timestamp',
+		nullable: false,
+		default: () => 'CURRENT_TIMESTAMP(6)',
+		onUpdate: 'CURRENT_TIMESTAMP(6)',
+	})
+	updatedAt: Date;
+
+	@DeleteDateColumn({ type: 'timestamp', nullable: true })
+	deletedAt: Date;
 
 	@BeforeInsert()
 	async hashPassword?(): Promise<void> {
